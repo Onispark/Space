@@ -19,6 +19,20 @@ public class space
             a.drawSolarObjectAbout(230.0, (25+(i*1.10)+25), 35.0, "#656e48", 2.0, 0.0);//SATURN
             a.drawSolarObjectAbout(250.0, (355+(i*1.0)), 20.0, "#90adad", 3.0, 0.0);//URANUS
             a.drawSolarObjectAbout(265.0, (i+193), 16.0, "#3f485e", 4.0, 0.0); //NEPTUNE
+
+            //adding the moons
+            a.drawSolarObjectAbout(20.0, (i*6.05), 4.0, "GREY", (130.0),(i*2.05)); //EARTH MOON
+            a.drawSolarObjectAbout(20.0, (180+(i*6.05)), 4.0, "GREY", 140.0, (300+(i*1.93))); //MARS MOON PHOBOSS
+            a.drawSolarObjectAbout(30.0, (i*3.05), 4.0, "GREY", 140.0, (300+(i*1.93))); //MARS MOON DEIMOS
+
+            //JUPITERS MOONS
+            a.drawSolarObjectAbout(40.0, (i*5.05), 14.0, "GREY", 190.0, (165+(i*1.30))); //GANYMEDE
+            a.drawSolarObjectAbout(30.0, (70+(i*5.55)), 10.0, "GREY", 190.0, (165+(i*1.30))); //EUROPA
+            a.drawSolarObjectAbout(25.0, (320+(i*6.05)), 4.0, "GREY", 190.0, (165+(i*1.30))); //CALLISTO
+
+            //SATURN MOONS
+            a.drawSolarObjectAbout(40.0, (i*5.05), 12.0, "GREY", 230.0, (25+(i*1.10)+25)); //TITAN
+
             a.finishedDrawing();
             i++;
         }   
