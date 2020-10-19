@@ -34,6 +34,7 @@ public class space
             a.drawSolarObjectAbout(31.5, (i*4.50), 4.0, "GREY", 212.0, ((i*0.646))); //TITAN
 
             a.finishedDrawing();
+
             i++;
         }   
     }       
