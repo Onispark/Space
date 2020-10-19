@@ -36,6 +36,8 @@ public class space
             a.finishedDrawing();
 
             i++;
+
+            //next add asteroid belt
         }   
     }       
 }
