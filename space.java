@@ -1,24 +1,61 @@
-public class space 
+import java.util.Random;
+import java.lang.Math;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class space
 {   
+
+    
     public static void main(String[]args)
     {
         SolarSystem a = new SolarSystem(1000, 1000); //creating the window for the game
         int i = 0; // variable used to dictate the speed of the individual planets
+        int j = 1;
 
-        //drawSolarObject[] stars = new drawSolarObject[14];
+        double[] angle = new double[306];
+        int[] diameter = new int[306];
+        int[] distance = new int[306];
+        int[] space_apart = new int[306];
+        double[] shape = new double[306];
 
-        while (!false) //creates an infinate loop so the planets are animated
+
+        
+        for (int k = 0; k <= 305; k++){
+            angle[k] = ThreadLocalRandom.current().nextDouble(0.50, 0.85);
+            diameter[k] = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+            distance[k]=ThreadLocalRandom.current().nextInt(100, 124 + 1);
+            space_apart[k] = ThreadLocalRandom.current().nextInt(k*10, k*12 + 1);
+            shape[k] = ThreadLocalRandom.current().nextDouble(1, 3.5);
+        }
+
+
+
+    
+
+
+        while (j==1) //creates an infinate loop so the planets are animated
         {
+
+
+
             //adding planets to the solar system
             a.drawSolarObject(0.0, 0.0, 35.0, "YELLOW");
-            a.drawSolarObjectAbout(36.0, ((i*3.2)), 4.0, "#402d2c", 5.0, 0.0); //MERCURY
+            a.drawSolarObjectAbout(36.0, ((i*3.2)), 5.0, "#402d2c", 5.0, 0.0); //MERCURY
             a.drawSolarObjectAbout(51.0, ((i*2.348)), 8.0, "#91400a", 6.0, 0.0); //VENUS
             a.drawSolarObjectAbout(68.0, (i*2.0), 10.0, "#3d88ad", 2.0, 0.0); //EARTH
             a.drawSolarObjectAbout(85.0, ((i*1.604)), 8.0, "#780901", 1.5, 0.0); //MARS
             a.drawSolarObjectAbout(154.0, ((i*0.868)), 33.0, "#5c272b", 1.0, 0.0); //JUPITER
             a.drawSolarObjectAbout(212.0, ((i*0.646)), 27.0, "#656e48", 2.0, 0.0);//SATURN
             a.drawSolarObjectAbout(327.0, ((i*0.456)), 12.0, "#90adad", 3.0, 0.0);//URANUS
-            a.drawSolarObjectAbout(400.0, ((i*0.364)), 8.0, "#3f485e", 4.0, 0.0); //NEPTUNE
+            a.drawSolarObjectAbout(400.0, ((i*0.364)), 8.0, "#3f485e", 2.0, 0.0); //NEPTUNE
+            
+            for (int x = 0; x <= 305; x++){
+            a.drawSolarObjectAbout(distance[x], (space_apart[x]+(i*angle[x])), diameter[x], "#8c8d8f", shape[x], 0.0);
+            }
+
+    
+               
+    
 
             //adding the moons
             a.drawSolarObjectAbout(12.0, (i*4.76), 2.0, "GREY", (68.0),(i*2.0)); //EARTH MOON
