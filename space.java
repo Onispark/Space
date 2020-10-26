@@ -1,4 +1,3 @@
-import java.util.concurrent.ThreadLocalRandom;
 
 public class space
 {   
@@ -11,6 +10,7 @@ public class space
         int j = 1;
 
         //initialising arrays for star values
+        Stars star = new Stars();
         double[] starDistance = new double[401];
         double[] starAngle = new double[401];
         double[] starDiameter = new double[401];
@@ -18,12 +18,14 @@ public class space
         //for loop to add the stars to the solar system.
         for (int y = 0; y<=400; y++)
         {
-            starDistance[y] = ThreadLocalRandom.current().nextDouble(0, 1000);
-            starAngle[y] = ThreadLocalRandom.current().nextDouble(0, 1000);
-            starDiameter[y] = ThreadLocalRandom.current().nextDouble(1, 4);
+            starDistance[y] = star.getStarDistance();
+            starAngle[y] = star.getStarAngle();
+            starDiameter[y] = star.getStarDiameter();
         }
 
         //initialising arrays for asteroid values
+
+        Asteroids asteroid = new Asteroids();
         double[] angle = new double[306];
         int[] diameter = new int[306];
         int[] distance = new int[306];
@@ -33,11 +35,11 @@ public class space
         //For loop to generate random numbers within a range to ensure each asteroid is unique(adds realism)
         
         for (int k = 0; k <= 305; k++){
-            angle[k] = ThreadLocalRandom.current().nextDouble(0.50, 0.85); //unique speed
-            diameter[k] = ThreadLocalRandom.current().nextInt(1, 3 + 1); //unique size
-            distance[k]=ThreadLocalRandom.current().nextInt(100, 124 + 1); //unqiue distance
-            space_apart[k] = ThreadLocalRandom.current().nextInt(k*10, k*12 + 1);//unique starting point
-            shape[k] = ThreadLocalRandom.current().nextDouble(1, 3.5); //unique orbitory shape
+            angle[k] = asteroid.getAsteroidAngle(); //unique speed
+            diameter[k] = asteroid.getAsteroidDiameter(); //unique size
+            distance[k]=asteroid.getAsteroidDistance(); //unqiue distance
+            space_apart[k] = asteroid.getSpace_Apart(k);//unique starting point
+            shape[k] = asteroid.getAsteroidShape(); //unique orbitory shape
         }
 
 
