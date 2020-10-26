@@ -9,57 +9,29 @@ public class space
         int i = 0; // variable used to dictate the speed of the individual planets
         int j = 1;
 
-        //initialising arrays for star values
-        Stars star = new Stars();
-        double[] starDistance = new double[401];
-        double[] starAngle = new double[401];
-        double[] starDiameter = new double[401];
-
-        //for loop to add the stars to the solar system.
-        for (int y = 0; y<=400; y++)
-        {
-            starDistance[y] = star.getStarDistance();
-            starAngle[y] = star.getStarAngle();
-            starDiameter[y] = star.getStarDiameter();
-        }
-
-        //initialising arrays for asteroid values
-
-        Asteroids asteroid = new Asteroids();
-        double[] angle = new double[306];
-        int[] diameter = new int[306];
-        int[] distance = new int[306];
-        int[] space_apart = new int[306];
-        double[] shape = new double[306];
-
-        //For loop to generate random numbers within a range to ensure each asteroid is unique(adds realism)
+        //initialising arrays for star and Asteroids
         
-        for (int k = 0; k <= 305; k++){
-            angle[k] = asteroid.getAsteroidAngle(); //unique speed
-            diameter[k] = asteroid.getAsteroidDiameter(); //unique size
-            distance[k]=asteroid.getAsteroidDistance(); //unqiue distance
-            space_apart[k] = asteroid.getSpace_Apart(k);//unique starting point
-            shape[k] = asteroid.getAsteroidShape(); //unique orbitory shape
-        }
-
-
+        Stars star = new Stars();
+        Asteroids asteroid = new Asteroids();
+        Planets planet = new Planets();
+        
         while (j==1) //creates an infinate loop so the planets are animated
         {
-            for (int y =0; y <= 400; y++)
+            for (int x =0; x <= 400; x++)
             {
-                a.drawSolarObject(starDistance[y], starAngle[y], starDiameter[y],"WHITE");
+                a.drawSolarObject(star.getStarDistance(x), star.getStarAngle(x), star.getStarDiameter(x),"WHITE");
             }
 
             //adding planets to the solar system
             a.drawSolarObject(0.0, 0.0, 35.0, "YELLOW");
-            a.drawSolarObjectAbout(36.0, ((i*3.2)), 5.0, "#402d2c", 5.0, 0.0); //MERCURY
-            a.drawSolarObjectAbout(51.0, ((i*2.348)), 8.0, "#91400a", 6.0, 0.0); //VENUS
-            a.drawSolarObjectAbout(68.0, (i*2.0), 10.0, "#3d88ad", 2.0, 0.0); //EARTH
-            a.drawSolarObjectAbout(85.0, ((i*1.604)), 8.0, "#780901", 1.5, 0.0); //MARS
-            a.drawSolarObjectAbout(154.0, ((i*0.868)), 33.0, "#5c272b", 1.0, 0.0); //JUPITER
-            a.drawSolarObjectAbout(212.0, ((i*0.646)), 27.0, "#656e48", 2.0, 0.0);//SATURN
-            a.drawSolarObjectAbout(327.0, ((i*0.456)), 12.0, "#90adad", 3.0, 0.0);//URANUS
-            a.drawSolarObjectAbout(400.0, ((i*0.364)), 8.0, "#3f485e", 2.0, 0.0); //NEPTUNE               
+            a.drawSolarObjectAbout(planet.getMercuryDistance(), planet.getMercurySpeed(i), planet.getMercurySize(), "#402d2c", planet.getMercuryCORA(), 0.0); //MERCURY
+            a.drawSolarObjectAbout(planet.getVenusDistance(), planet.getVenusSpeed(i), planet.getVenusSize(), "#91400a", planet.getVenusCORA(), 0.0); //VENUS
+            a.drawSolarObjectAbout(planet.getEarthDistance(),planet.getEarthSpeed(i), planet.getEarthSize(), "#3d88ad", planet.getEarthCORA(), 0.0); //EARTH
+            a.drawSolarObjectAbout(planet.getMarsDistance(),planet.getMarsSpeed(i), planet.getMarsSize(), "#780901", planet.getMarsCORA(), 0.0); //MARS
+            a.drawSolarObjectAbout(planet.getJupiterDistance(),planet.getJupiterSpeed(i), planet.getJupiterSize(), "#5c272b", planet.getJupiterCORA() , 0.0); //JUPITER
+            a.drawSolarObjectAbout(planet.getSaturnDistance(),planet.getSaturnSpeed(i), planet.getSaturnSize(), "#656e48", planet.getSaturnCORA(), 0.0);//SATURN
+            a.drawSolarObjectAbout(planet.getUranusDistance(),planet.getUranusSpeed(i), planet.getUranusSize(), "#90adad", planet.getUranusCORA(), 0.0);//URANUS
+            a.drawSolarObjectAbout(planet.getNeptuneDistance(),planet.getNeptuneSpeed(i), planet.getNeptuneSize(), "#3f485e", planet.getNeptuneCORA(), 0.0); //NEPTUNE               
 
             //adding the moons
 
@@ -67,24 +39,24 @@ public class space
             // as the centreofrotationdistance and centreofrotationangle
 
             //EARTH MOON
-            a.drawSolarObjectAbout(12.0, (i*4.76), 2.0, "GREY", (68.0),(i*2.0)); //EARTH MOON
+            a.drawSolarObjectAbout(12.0, (i*4.76), 2.0, "GREY", planet.getEarthDistance(),planet.getEarthSpeed(i)); //EARTH MOON
 
             //MARS MOONS
-            a.drawSolarObjectAbout(10.0, (180+(i*4.86)), 2.0, "GREY", 85.0, ((i*1.604))); //MARS MOON PHOBOSS
-            a.drawSolarObjectAbout(13.0, (i*4.45), 2.0, "GREY", 85.0, ((i*1.604))); //MARS MOON DEIMOS
+            a.drawSolarObjectAbout(10.0, (180+(i*4.86)), 2.0, "GREY", planet.getMarsDistance(),planet.getMarsSpeed(i)); //MARS MOON PHOBOSS
+            a.drawSolarObjectAbout(13.0, (i*4.45), 2.0, "GREY", planet.getMarsDistance(),planet.getMarsSpeed(i)); //MARS MOON DEIMOS
 
             //JUPITERS MOONS
-            a.drawSolarObjectAbout(34.5, (i*5.05), 6.0, "GREY", 154.0, ((i*0.868))); //GANYMEDE
-            a.drawSolarObjectAbout(24.0, (70+(i*5.482)), 4.0, "GREY", 154.0, ((i*0.868))); //EUROPA
-            a.drawSolarObjectAbout(36.0, (320+(i*4.88)), 2.0, "GREY", 154.0, ((i*0.868))); //CALLISTO
+            a.drawSolarObjectAbout(34.5, (i*5.05), 6.0, "GREY", planet.getJupiterDistance(),planet.getJupiterSpeed(i)); //GANYMEDE
+            a.drawSolarObjectAbout(24.0, (70+(i*5.482)), 4.0, "GREY", planet.getJupiterDistance(),planet.getJupiterSpeed(i)); //EUROPA
+            a.drawSolarObjectAbout(36.0, (320+(i*4.88)), 2.0, "GREY", planet.getJupiterDistance(),planet.getJupiterSpeed(i)); //CALLISTO
 
             //SATURN MOONS
-            a.drawSolarObjectAbout(31.5, (i*4.50), 4.0, "GREY", 212.0, ((i*0.646))); //TITAN
+            a.drawSolarObjectAbout(31.5, (i*4.50), 4.0, "GREY", planet.getSaturnDistance(),planet.getSaturnSpeed(i)); //TITAN
 
             //next add asteroid belt
             for (int x = 0; x <= 305; x++) //iterate through loop to add asteroid belt.
             {
-                a.drawSolarObjectAbout(distance[x], (space_apart[x]+(i*angle[x])), diameter[x], "#8c8d8f", shape[x], 0.0);
+                a.drawSolarObjectAbout(asteroid.getAsteroidDistance(x), (asteroid.getSpaceApart(x)+(i*asteroid.getAsteroidAngle(x))), asteroid.getAsteroidDiameter(x), "#8c8d8f", asteroid.getAsteroidShape(x), 0.0);
             }
 
             a.finishedDrawing();
